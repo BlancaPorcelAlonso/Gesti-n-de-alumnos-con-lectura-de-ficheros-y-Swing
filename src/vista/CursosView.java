@@ -206,6 +206,8 @@ public class CursosView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String alumno = jList1.getSelectedValue();
+        if(jList1.getSelectedValue() == null)
+            JOptionPane.showMessageDialog(this, "NINGUNA OPCION SELECCIONADA","Error", JOptionPane.ERROR_MESSAGE);
         controlador.borrarAlumno(alumno);
         this.setControlador(controlador);
         this.setVisible(true);
