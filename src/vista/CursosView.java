@@ -188,11 +188,18 @@ public class CursosView extends javax.swing.JFrame {
         String edadTexto = edad.getText();
 
         if (nombre.trim().equals("") || apellido.trim().equals("") || dniN.trim().equals("") || edadTexto.trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "DATOS INCOMPLETOS","Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "DATOS INCOMPLETOS", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int edadN; 
+
+        try {
+            edadN = Integer.parseInt(edadTexto);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "LA EDAD DEBE SER UN NUMERO ENTERO", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        int edadN = Integer.parseInt(edadTexto);
         controlador.añadirAlumno(nombre, apellido, edadN, dniN);
 
         this.setControlador(controlador);
@@ -206,8 +213,9 @@ public class CursosView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String alumno = jList1.getSelectedValue();
-        if(jList1.getSelectedValue() == null)
-            JOptionPane.showMessageDialog(this, "NINGUNA OPCION SELECCIONADA","Error", JOptionPane.ERROR_MESSAGE);
+        if (jList1.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(this, "NINGUNA OPCION SELECCIONADA", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         controlador.borrarAlumno(alumno);
         this.setControlador(controlador);
         this.setVisible(true);
